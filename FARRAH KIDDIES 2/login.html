@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login |   Farrah Kiddies </title>
+    <!-- Google Fonts (Poppins – looks modern & clean) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons (heart, cart, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+    <style>
+      body {
+       background: linear-gradient(135deg, #fff1f2, #fce7f3);
+       min-height: 100vh;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-family:'poppins';
+      }
+
+      .login-box {
+      background:white;
+      padding: 40px;
+      border-radius:20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      width:100%;
+      max-width:400px;
+      text-align:center;
+      }
+
+      .login-box h2 {
+        margin-bottom:8px;
+        color:#111;
+      }
+
+      .login-box p {
+        color:#666;
+        margin-bottom:30px;
+        font-size:0.95rem;
+      }
+
+
+      .form-group {
+        margin-bottom:8px;
+        text-align:left;
+      }
+
+      .form-group label {
+        display:block;
+        margin-bottom:6px;
+        font-weight:500;
+        font-size:0.95rem;
+      }
+
+        .form-group input {
+          width:100%;
+          padding:13px 16px;
+          border: 1.5px solid #e5e7eb;
+          border-radius:12px;
+          font-size:1rem;
+          outline:none;
+          transition:0.3s;
+        }
+
+         .form-group input:focus {
+          border-color:#db2777;
+          box-shadow: 0 0 0 4px rgba(219,39, 119, 0.1);
+         }
+
+         .login-btn {
+          width:100%;
+          background:#db2777;
+          color:white;
+          border:none;
+          padding:14px;
+          border-radius:12px;
+          font-size:1rem;
+          font-weight:600;
+          cursor: pointer;
+          margin-top:10px;
+          transition:0.3s;
+         }
+
+          .login-btn:hover {
+            background:#be185d;
+          }
+
+          .error-msg {
+            color:#e11d48;
+            font-size:0.9rem;
+            margin-top:15px;
+            display:none;
+          }
+
+          .back-link {
+            display:inline-block;
+            margin-top:25px;
+            color:#db2777;
+            text-decoration: none;
+            font-size:0.9rem;
+          }
+
+      </style>
+<body>
+
+  <div class = "login-box">
+    <h2>Admin Login</h2>
+    <P>Farrah Kiddies Dashboard</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="username" placeholder="Enter username" required>
+        </div>
+
+         <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="password" placeholder="Enter password" required>
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+        <p class="error-msg" id="errorMsg">Incorrect username or password</p>
+      </form>
+
+      <a href ="index.html" class="back-link">🔙Back to Website</a>
+    </div>
+    
+    <script>
+      // simple admin credentials
+      const ADMIN_USERNAME ="admin";
+      const ADMIN_PASSWORD  = "Farrah123";
+
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+
+        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+          localStorage.setItem('isAdminLoggedIn', 'true');
+          alert ('Login successfull! Welcome Admin.');
+          window.location.href = 'admin.html'; //go to admin page
+        }
+        else{
+          document.getElementById ('errorMsg').style.display = 'block';
+        }
+      });
+
+      </script>
+
+    </body>
+    </html>
+

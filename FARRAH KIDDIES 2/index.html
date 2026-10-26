@@ -1,0 +1,635 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farrah Kiddies | Stylish Kids • Happy Parents</title>
+    
+    <!-- Link to our CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts (Poppins – looks modern & clean) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons (heart, cart, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+<header class="header">
+    <div class="container">
+        <!-- Logo -->
+          <img src ="images/logo.jpeg" alt = "logo.jpeg">
+        <a href="#" class="logo">
+         
+            <span class="logo-text">Farrah <span>Kiddies</span></span>
+            <small>Stylish Kids • Happy Parents</small>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="nav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#shop" class="nav-link">Shop</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#contact"class="nav-link">Contact</a>
+        </nav>
+
+        <!-- Search + Icons -->
+         <button class="hamburger" id="hamburger">
+          <i class ="fas fa-bars"></i>
+         </button>
+        <div class="header-right">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for products...">
+            </div>
+
+          <button class="icon-btn" id="open-wishlist">
+    <i class="far fa-heart"></i>
+    <span class="wishlist-count"></span>
+</button>
+            
+            <button class="icon-btn cart-btn" id="open-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count"></span>
+            </button>
+            
+            <a href="login.html" class="icon-btn" title="Admin Login">
+              <i class="far fa-user"></i></a>
+        </div>
+    </div>
+</header>
+    
+   <!-- ========== HERO SECTION ========== -->
+<section class="hero"  id="home">
+    <div class="container hero-content">
+        <!-- Left text -->
+        <div class="hero-text">
+            <p class="welcome">WELCOME TO FARRAH KIDDIES</p>
+            
+            <h1>
+                Everything Your<br>
+                <span>Little One Needs</span>
+            </h1>
+            
+            <p class="hero-desc">
+                Shop stylish and quality clothes, shoes, toys and 
+                accessories for your kids. Because they deserve 
+                the best! 💖
+            </p>
+            
+            <a href="#shop" class="btn-shop">
+                Shop Now <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- Right image -->
+        <div class="hero-image">
+            <!-- Replace the src with your real kids photo later -->
+            <img src="images/hero-kids.jpg" alt="Happy kids wearing Farrah Kiddies clothes">
+            
+            <!-- Decorative elements -->
+            <span class="deco heart1"><i class="fas fa-crown"></i></span>
+            <span class="deco crown"><i class="fas fa-heart"></i></span>
+        </div>
+    </div>
+</section>
+
+<!-- ========== CATEGORIES ========== -->
+<section class="categories" id="categories">
+    <div class="container">
+        <div class="category-grid">
+
+            <!-- Clothes -->
+            <a href="#" class="category-card">
+                <div class="cat-icon clothes">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h3>Clothes</h3>
+                <span>Shop Now →</span>
+            </a>
+
+            <!-- Shoes -->
+            <a href="#" class="category-card">
+                <div class="cat-icon shoes">
+                    <i class="fas fa-shoe-prints"></i>
+                </div>
+                <h3>Shoes</h3>
+                <span>Shop Now →</span>
+            </a>
+
+            <!-- Toys -->
+            <a href="#" class="category-card">
+                <div class="cat-icon toys">
+                    <i class="fas fa-headphones"></i>
+                    <!-- Note: Font Awesome may not have teddy-bear, so we use a fallback below -->
+                </div>
+                <h3>Toys</h3>
+                <span>Shop Now →</span>
+            </a>
+
+            <!-- Bags -->
+            <a href="#" class="category-card">
+                <div class="cat-icon bags">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <h3>Bags</h3>
+                <span>Shop Now →</span>
+            </a>
+
+            <!-- Accessories -->
+            <a href="#" class="category-card">
+                <div class="cat-icon accessories">
+                    <i class="fas fa-hat-cowboy"></i>
+                </div>
+                <h3>Accessories</h3>
+                <span>Shop Now →</span>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========== FEATURED PRODUCTS ========== -->
+<section class="featured" id="shop">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+            <h2>Featured Products</h2>
+            <a href="#" class="view-all">View All Products →</a>
+        </div>
+
+      
+      <!-- Filters -->
+<div class="filters-container">
+    <div class="filters">
+        <div class="filter-group">
+            <label>Category</label>
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="clothes">Clothes</option>
+                <option value="shoes">Shoes</option>
+                <option value="toys">Toys</option>
+                <option value="bags">Bags</option>
+                <option value="accessories">Accessories</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Price Range</label>
+            <select id="priceFilter">
+                <option value="all">All Prices</option>
+                <option value="0-10000">Under ₦10,000</option>
+                <option value="10000-20000">₦10,000 - ₦20,000</option>
+                <option value="20000-50000">₦20,000 - ₦50,000</option>
+                <option value="50000+">Above ₦50,000</option>
+            </select>
+        </div>
+
+        <button id="clearFilters" class="clear-btn">
+            <i class="fas fa-times"></i> Clear
+        </button>
+    </div>
+</div>
+         
+     <!-- Products Grid -->
+          <div class="products-grid">
+
+    <!-- Product 1 -->
+    <div class="product-card" data-id="1" data-name="Kids Denim Set" data-price="25000" data-img="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400">
+        <div class="product-img">
+            <span class="badge new">New</span>
+            <button class="wishlist"><i class="far fa-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400" alt="Kids Denim Set">
+        </div>
+        <div class="product-info">
+            <h3>Kids Denim Set</h3>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span>(4.8)</span>
+            </div>
+            <div class="price">₦25,000</div>
+            <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+        </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card" data-id="2" data-name="Pink Princess Dress" data-price="22000" data-img="images/princess-dress.jpg">
+        <div class="product-img">
+            <span class="badge bestseller">Best Seller</span>
+            <button class="wishlist"><i class="far fa-heart"></i></button>
+            <img src="images/princess-dress.jpg" alt="Pink Princess Dress">
+        </div>
+        <div class="product-info">
+            <h3>Pink Princess Dress</h3>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>(4.9)</span>
+            </div>
+            <div class="price">₦22,000</div>
+            <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+        </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card" data-id="3" data-name="Kids Sneakers" data-price="18000" data-img="images/sneakers.jpg">
+        <div class="product-img">
+            <span class="badge sale">Sale</span>
+            <button class="wishlist"><i class="far fa-heart"></i></button>
+            <img src="images/sneakers.jpg" alt="Kids Sneakers">
+        </div>
+        <div class="product-info">
+            <h3>Kids Sneakers</h3>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span>(4.7)</span>
+            </div>
+            <div class="price">
+                ₦18,000
+                <span class="old-price">₦22,000</span>
+                <span class="discount">-18%</span>
+            </div>
+            <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+        </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product-card" data-id="4" data-name="Dinosaur Kids Bag" data-price="15000" data-img="https://images.unsplash.com/photo-1588072432836-e10032774350?w=400">
+        <div class="product-img">
+            <button class="wishlist"><i class="far fa-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=400" alt="Dinosaur Kids Bag">
+        </div>
+        <div class="product-info">
+            <h3>Dinosaur Kids Bag</h3>
+            <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span>(4.6)</span>
+            </div>
+            <div class="price">₦15,000</div>
+            <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+        </div>
+    </div>
+
+</div>
+</section>
+
+
+<!-- ========== ABOUT SECTION ========== -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About Farrah Kiddies</h2>
+                <p class="about-subtitle">Stylish Kids • Happy Parents</p>
+                
+                <p>
+                    At Farrah Kiddies, we believe every child deserves to look and feel their best. 
+                    We carefully select high-quality clothes, shoes, toys, and accessories that combine 
+                    style, comfort, and durability.
+                </p>
+                
+                <p>
+                    Our mission is simple — to bring joy to little ones and peace of mind to parents. 
+                    Every product is chosen with love, care, and attention to detail.
+                </p>
+
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>500+</h3>
+                        <span>Happy Customers</span>
+                    </div>
+                    <div class="stat">
+                        <h3>100%</h3>
+                        <span>Quality Products</span>
+                    </div>
+                    <div class="stat">
+                        <h3>Fast</h3>
+                        <span>Nationwide Delivery</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600" alt="Happy kids">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ========== PROMO BAR ========== -->
+<section class="promo-bar" id="contact">
+    <div class="container">
+        <div class="promo-grid">
+
+            <!-- Fast Delivery -->
+            <div class="promo-item">
+                <div class="promo-icon delivery">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <div>
+                    <h4>Fast & Reliable Delivery</h4>
+                    <p>We get your little one’s favorite items to you, safely and on time.</p>
+                </div>
+            </div>
+
+            <!-- WhatsApp Chat -->
+            <div class="promo-item center">
+                <a href="https://wa.me/234XXXXXXXXXX" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    Chat on WhatsApp
+                </a>
+                <p class="whatsapp-text">Need help? Chat with us now.</p>
+            </div>
+
+            <!-- Slogan -->
+            <div class="promo-item slogan">
+                <div class="slogan-text">
+                    <i class="fas fa-crown"></i>
+                    <span>Happy Kids</span>
+                    <span class="dot">•</span>
+                    <span>Happy Parents</span>
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+  <!-- ========== FOOTER ========== -->
+<footer class="footer" id="about">
+    <div class="container">
+        <div class="footer-grid">
+
+            <!-- Brand -->
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="logo-text">Farrah <span>Kiddies</span></span>
+                    <small>Stylish Kids • Happy Parents</small>
+                </a>
+                <p class="footer-desc">
+                    Quality clothes, shoes, toys and accessories that make kids happy and parents proud.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Care -->
+            <div class="footer-links">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow Us + Subscribe -->
+            <div class="footer-subscribe">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+
+                <h4 class="subscribe-title">Subscribe for Updates</h4>
+                <p>Get the latest products and offers.</p>
+                
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Bottom copyright -->
+        <div class="footer-bottom">
+            <p>© 2025 Farrah Kiddies. All rights reserved.</p>
+            <p>Little Fashion • Big Smiles 💖</p>
+        </div>
+    </div>
+
+    <!-- ========== CONTACT SECTION ========== -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="section-header" style="justify-content: center; text-align: center; margin-bottom: 50px;">
+            <h2>Get In Touch</h2>
+        </div>
+
+        <div class="contact-content">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h4>Our Location</h4>
+                        <p>ABEOKUTA, Ogun State, Nigeria</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                        <h4>Phone Number</h4>
+                        <p>+234 800 000 0000</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h4>Email Address</h4>
+                        <p>hello@farrahkiddies.com</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <h4>WhatsApp</h4>
+                        <p>Chat with us anytime</p>
+                        <a href="https://wa.me/2348000000000" target="_blank" class="whatsapp-link">
+                            Start Chat →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Send us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        Send Message <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</footer>
+
+<!-- ========== CART SIDEBAR ========== -->
+<div class="cart-overlay" id="cart-overlay"></div>
+
+<div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+        <h3>Your Cart <span id="cart-item-count">(0)</span></h3>
+        <button class="close-cart" id="close-cart">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div class="cart-items" id="cart-items">
+    <!-- Cart items will appear here dynamically -->
+    <p class="empty-cart" id="empty-cart">Your cart is empty</p>
+</div>
+
+    <div class="cart-footer">
+        <div class="subtotal">
+            <span>Subtotal</span>
+            <strong id="cart-subtotal">₦0</strong>
+        </div>
+        <!-- <button class="btn-view-cart">
+            <i class="fas fa-shopping-cart"></i> View Cart
+        </button> -->
+        <button class="btn-checkout">
+            <i class="fas fa-lock"></i> Checkout
+        </button>
+        <a href="#" id="whatsappOrderBtn" class="btn-whatsapp-order" target="_blank">
+            <i class="fab fa-whatsapp"></i>Order via Whatsapp
+        </a>
+    </div>
+</div>
+<!-- ========== WISHLIST SIDEBAR ========== -->
+<div class="wishlist-overlay" id="wishlist-overlay"></div>
+
+<div class="wishlist-sidebar" id="wishlist-sidebar">
+    <div class="cart-header">
+        <h3>Your Wishlist <span id="wishlist-item-count">(0)</span></h3>
+        <button class="close-cart" id="close-wishlist">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div class="cart-items" id="wishlist-items">
+        <p class="empty-cart" id="empty-wishlist">Your wishlist is empty</p>
+    </div>
+</div>
+<!-- ========== MOBILE BOTTOM NAV ========== -->
+<nav class="bottom-nav">
+    <a href="#home" class="bottom-nav-item active">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+    </a>
+    <a href="#shop" class="bottom-nav-item">
+        <i class="fas fa-shopping-bag"></i>
+        <span>Shop</span>
+    </a>
+    <button class="bottom-nav-item" id="bottom-wishlist">
+        <i class="far fa-heart"></i>
+        <span class="bottom-wishlist">Wishlist</span>
+    </button>
+    <button class="bottom-nav-item" id="bottom-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="bottom-cart-count">0</span>
+        <span>Cart</span>
+    </button>
+    <a href="login.html" class="bottom-nav-item">
+        <i class="far fa-user"></i>
+        <span>Account</span>
+    </a>
+</nav>
+
+<!-- ========== CHECKOUT MODAL ========== -->
+<div class="checkout-overlay" id="checkout-overlay"></div>
+
+<div class="checkout-modal" id="checkout-modal">
+    <div class="checkout-header">
+        <h3>Checkout</h3>
+        <button class="close-checkout" id="close-checkout">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <form id="checkoutForm">
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="checkoutName" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number (WhatsApp)</label>
+            <input type="tel" id="checkoutPhone" placeholder="e.g. 08012345678" required>
+        </div>
+
+        <div class="form-group">
+            <label>Delivery Address (Optional)</label>
+            <textarea id="checkoutAddress" rows="3" placeholder="Enter your address"></textarea>
+        </div>
+
+        <div class="checkout-total">
+            <span>Total:</span>
+            <strong id="checkoutTotal">₦0</strong>
+        </div>
+
+        <button type="submit" class="btn-place-order">
+            Place Order
+        </button>
+    </form>
+</div>
+
+<div id ="toast" class="toast"></div>
+
+    <!-- Link to our JavaScript -->
+    <script src="script.js"></script>
+    
+</body>
+</html>

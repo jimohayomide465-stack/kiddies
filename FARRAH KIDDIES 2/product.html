@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Farrah Kiddies</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .product-detail {
+            padding: 60px 0;
+        }
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .product-detail-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+        .product-detail-info h1 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        .product-detail-info .price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #db2777;
+            margin: 15px 0;
+        }
+        .product-detail-info .stock {
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .quantity-selector button {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: white;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .quantity-selector span {
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+        .btn-add-detail {
+            background: #db2777;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-add-detail:hover {
+            background: #be185d;
+        }
+        .btn-add-detail:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        @media (max-width: 768px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Simple Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Farrah <span>Kiddies</span></span>
+            </a>
+            <a href="index.html" style="color:#db2777; font-weight:500;">← Back to Shop</a>
+        </div>
+    </header>
+
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-detail-container" id="productDetail">
+                <!-- Product details will be loaded here by JavaScript -->
+                <p>Loading product...</p>
+            </div>
+        </div>
+    </section>
+
+   <!-- <script src="js/script.js"></script> -->
+<script>
+    // Get product ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+
+    function loadProductDetail() {
+        try {
+            const products = JSON.parse(localStorage.getItem('farrahProducts')) || [];
+            const product = products.find(p => String(p.id) === String(productId));
+
+            const container = document.getElementById('productDetail');
+
+            if (!product) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+                        <h2>Product not found</h2>
+                        <p style="margin: 15px 0;">This product may have been removed.</p>
+                        <a href="index.html" style="color: #db2777; font-weight: 500;">← Back to Shop</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Save to recently viewed
+            let recent = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+            recent = recent.filter(id => id !== product.id);
+            recent.unshift(product.id);
+            if (recent.length > 6) recent = recent.slice(0, 6);
+            localStorage.setItem('recentlyViewed', JSON.stringify(recent));
+
+            const stock = Number(product.stock) || 0;
+
+            container.innerHTML = `
+                <div class="product-detail-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="product-detail-info">
+                    <h1>${product.name}</h1>
+                    <div class="price">₦${Number(product.price).toLocaleString()}</div>
+                    <div class="stock" style="color: ${stock <= 5 ? '#dc2626' : '#16a34a'}; font-weight: 500; margin-bottom: 20px;">
+                        ${stock > 0 ? `In Stock: ${stock}` : 'Out of Stock'}
+                    </div>
+
+                    <div class="quantity-selector">
+                        <button type="button" id="decreaseQty">-</button>
+                        <span id="qtyValue">1</span>
+                        <button type="button" id="increaseQty">+</button>
+                    </div>
+
+                    <button class="btn-add-detail" id="addToCartDetail" ${stock <= 0 ? 'disabled' : ''}>
+                        <i class="fas fa-shopping-cart"></i>
+                        ${stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
+                    </button>
+                </div>
+            `;
+
+            // Quantity controls
+            let quantity = 1;
+            const qtyValue = document.getElementById('qtyValue');
+
+            document.getElementById('increaseQty').onclick = function() {
+                if (quantity < stock) {
+                    quantity++;
+                    qtyValue.textContent = quantity;
+                } else {
+                    alert(`Only ${stock} available in stock!`);
+                }
+            };
+
+            document.getElementById('decreaseQty').onclick = function() {
+                if (quantity > 1) {
+                    quantity--;
+                    qtyValue.textContent = quantity;
+                }
+            };
+
+            // Add to Cart
+            document.getElementById('addToCartDetail').onclick = function() {
+                if (stock <= 0) return;
+
+                let cart = JSON.parse(localStorage.getItem('farrahCart')) || [];
+                const existing = cart.find(item => item.id === product.id);
+
+                if (existing) {
+                    if (existing.quantity + quantity > stock) {
+                        alert(`Only ${stock} items available!`);
+                        return;
+                    }
+                    existing.quantity += quantity;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: Number(product.price),
+                        img: product.image,
+                        quantity: quantity
+                    });
+                }
+
+                localStorage.setItem('farrahCart', JSON.stringify(cart));
+                alert(`${product.name} added to cart!`);
+            };
+
+        } catch (error) {
+            console.error(error);
+            document.getElementById('productDetail').innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                    <h2>Something went wrong</h2>
+                    <a href="index.html">← Back to Shop</a>
+                </div>
+            `;
+        }
+    }
+
+    // Load product when page is ready
+    loadProductDetail();
+</script>
+</body>
+</html>
+
